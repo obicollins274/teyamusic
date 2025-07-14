@@ -22,3 +22,4 @@ bool isDarkMode(BuildContext context) {
 
 const teyaWhite = Color(0xffffffff);
 const teyaGrey = Color(0xff444444);
+const teyaLightGrey = Color(0xffcccccc);

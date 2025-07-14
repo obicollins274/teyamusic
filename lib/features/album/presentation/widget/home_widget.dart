@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -49,9 +50,19 @@ class HomePageWidget extends StatelessWidget {
                       padding: const EdgeInsets.all(5.0),
                       alignment: Alignment.center,
                       child: ListTile(
-                        leading: CircleAvatar(
-                          radius: 30,
-                          backgroundImage: NetworkImage(result.imageUrl!),
+                        leading: CachedNetworkImage(
+                          imageUrl: result.imageUrl!,
+                          imageBuilder:
+                              (context, imageProvider) => CircleAvatar(
+                                radius: 30,
+                                backgroundImage: NetworkImage(result.imageUrl!),
+                              ),
+                          placeholder:
+                              (context, url) => CircularProgressIndicator(
+                                color: teyaLightGrey,
+                              ),
+                          errorWidget:
+                              (context, url, error) => Icon(Icons.error),
                         ),
                         titleAlignment: ListTileTitleAlignment.center,
                         title: Padding(
